@@ -1,0 +1,36 @@
+{
+    "name": "dnj/s3-filesystem",
+    "description": "S3 filesystem",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.4",
+        "dnj/filesystem": "^1.0.0",
+        "aws/aws-sdk-php": "^3.212",
+        "dnj/tmp-filesystem": "dev-master"
+        
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.4.6",
+		"phpunit/phpunit": "^9.5",
+		"friendsofphp/php-cs-fixer": "^3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "dnj\\Filesystem\\S3\\": "src/"
+        }
+    },
+    "scripts": {
+        "test:types": "vendor/bin/phpstan analyze",
+        "test:phpunit": "vendor/bin/phpunit",
+        "test:codestyle": "vendor/bin/php-cs-fixer fix -v --dry-run --stop-on-violation --using-cache=no",
+        "test:codestyle:fix": "vendor/bin/php-cs-fixer fix -v --using-cache=no",
+        "test": [
+            "@composer validate",
+            "@test:types",
+            "@test:phpunit",
+            "@test:codestyle"
+        ]
+    },
+    "minimum-stability": "dev"
+}
